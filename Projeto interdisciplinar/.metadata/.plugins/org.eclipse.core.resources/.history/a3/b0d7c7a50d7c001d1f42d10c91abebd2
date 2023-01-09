@@ -1,0 +1,115 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import controller.MonitorController;
+import modelo.entidade.Senha;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import controller.CargoController;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+
+import java.awt.Cursor;
+import javax.swing.JLayeredPane;
+import java.awt.Component;
+
+public class Monitor extends JFrame {
+
+	private JPanel contentPane;
+	private static String senha;
+	
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	
+	
+	
+	
+	public Monitor() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setAlwaysOnTop(true);
+		setBounds(0, 200, 550, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setForeground(new Color(64, 0, 64));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(81, 11, -35, 26);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblInserirGuich = new JLabel("SENHA");
+		lblInserirGuich.setAutoscrolls(true);
+		lblInserirGuich.setForeground(new Color(255, 255, 255));
+		lblInserirGuich.setFont(new Font("Comic Sans MS", Font.BOLD, 70));
+		lblInserirGuich.setBounds(127, 22, 265, 71);
+		contentPane.add(lblInserirGuich);
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(272, 193, 1, 1);
+		contentPane.add(layeredPane);
+		JTable table;
+//		System.out.println(senha.getSenha());
+		JTextArea SENHA = new JTextArea();
+		SENHA.setEditable(false);
+		System.out.println("Essa a senha no monitor: "+ senha);
+		SENHA.setText(senha);
+		SENHA.setBackground(new Color(0, 0, 0));
+		SENHA.setForeground(new Color(255, 255, 255));
+		SENHA.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		SENHA.setBounds(35, 133, 449, 143);
+		contentPane.add(SENHA);
+		
+
+		
+		
+		
+		JTextArea SENHA_1 = new JTextArea();
+		SENHA_1.setEditable(false);
+		SENHA_1.setText("GUICHE 1");
+		SENHA_1.setForeground(Color.WHITE);
+		SENHA_1.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		SENHA_1.setBackground(Color.BLACK);
+		SENHA_1.setBounds(21, 287, 505, 128);
+		contentPane.add(SENHA_1);
+	
+	}
+	public static void passaDados(String string) {
+        senha=string;
+		System.out.println("Essa a senha no monitor: "+ senha);
+		
+		
+	}
+}

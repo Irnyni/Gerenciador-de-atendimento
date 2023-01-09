@@ -1,0 +1,134 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import controller.MonitorController;
+import controller.SenhaController;
+import modelo.entidade.Senha;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import controller.CargoController;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+
+import java.awt.Cursor;
+import javax.swing.JLayeredPane;
+import java.awt.Component;
+import javax.swing.SwingConstants;
+
+public class Monitor extends JFrame {
+
+	private JPanel contentPane;
+	private static String senha;
+	private static int conti=1;
+	private static int guiche;
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+//					Monitor frame = new Monitor();
+//					frame.setVisible(true);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+
+
+
+
+	public Monitor() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		SenhaController sc = new SenhaController();
+		Senha senhas = sc.ultimaSenha(conti);
+		System.out.println("conti no monitor"+conti);
+		setAlwaysOnTop(true);
+		setBounds(0, 200, 550, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setForeground(new Color(64, 0, 64));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(81, 11, -35, 26);
+		contentPane.add(lblNewLabel);
+
+		JLabel lblInserirGuich = new JLabel("SENHA");
+		lblInserirGuich.setAutoscrolls(true);
+		lblInserirGuich.setForeground(new Color(255, 255, 255));
+		lblInserirGuich.setFont(new Font("Comic Sans MS", Font.BOLD, 70));
+		lblInserirGuich.setBounds(127, 22, 265, 71);
+		contentPane.add(lblInserirGuich);
+
+		JLayeredPane layeredPane = new JLayeredPane();
+
+		layeredPane.setBounds(272, 193, 1, 1);
+		contentPane.add(layeredPane);
+		JTable table;
+		System.out.println("Essa a senha no monitor:2 "+ senha);
+
+
+
+
+		TelaAtendimento frame1 = new TelaAtendimento();
+		guiche=frame1.getGuiches();
+
+		JTextArea SENHA_1 = new JTextArea(senhas.getSenha());
+		SENHA_1.setEditable(false);
+		SENHA_1.setText("GUICHE"+guiche);
+		SENHA_1.setForeground(Color.WHITE);
+		SENHA_1.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 99));
+		SENHA_1.setBackground(Color.BLACK);
+		SENHA_1.setBounds(21, 287, 505, 128);
+		contentPane.add(SENHA_1);
+		
+		JLabel lblPaga = new JLabel(senhas.getSenha());
+		lblPaga.setText("sdfsd");
+		lblPaga.setBackground(new Color(255, 255, 255));
+		lblPaga.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaga.setForeground(Color.WHITE);
+		lblPaga.setFont(new Font("Ebrima", Font.BOLD, 99));
+		lblPaga.setAutoscrolls(true);
+		lblPaga.setBounds(0, 103, 536, 198);
+		contentPane.add(lblPaga);
+
+
+
+	}
+	public static void passaDados(String string, int cont, int guiches) {
+		senha=string;
+		conti=cont;
+		guiche=guiches;
+		System.out.println("Essa a senha no monitor 1: "+ senha);
+
+
+
+
+	}
+}

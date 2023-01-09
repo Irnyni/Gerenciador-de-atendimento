@@ -1,0 +1,58 @@
+package view;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTabbedPane;
+
+public class Mostra extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Mostra frame = new Mostra();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Mostra() {
+		setTitle("SENHAS");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 715, 506);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(5, 10, 696, 459);
+		MostraSenhas SH = new MostraSenhas();
+
+		tabbedPane.addTab("SENHAS", SH);
+		SH.setLayout(null);
+		SH.setLayout(null);
+		/*****/
+		
+		contentPane.add(tabbedPane);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	}
+
+}

@@ -1,0 +1,83 @@
+package view;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTabbedPane;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.border.BevelBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MostraGuiches extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MostraGuiches frame = new MostraGuiches();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MostraGuiches() {
+		setForeground(new Color(0, 0, 0));
+		setTitle("Guiches");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(500, 200, 663, 500);
+		contentPane = new JPanel();
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 10));
+		tabbedPane.setForeground(new Color(0, 0, 0));
+		tabbedPane.setBackground(new Color(0, 0, 0));
+		tabbedPane.setBounds(0, 10, 700, 249);
+		CorpotabelaGuiches SH = new CorpotabelaGuiches();
+		SH.setForeground(new Color(64, 0, 128));
+		SH.setBackground(new Color(255, 255, 255));
+
+		tabbedPane.addTab("GUICHÊS", SH);
+		tabbedPane.setBackgroundAt(0, new Color(0, 0, 0));
+		SH.setLayout(null);
+		SH.setLayout(null);
+		SH.setLayout(null);
+		SH.setLayout(null);
+		SH.setLayout(null);
+		SH.setLayout(null);
+		/*****/
+		
+		contentPane.add(tabbedPane);
+		
+		JButton btnNewButton = new JButton("VOLTAR");
+		btnNewButton.setBounds(260, 258, 85, 21);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+	}
+}

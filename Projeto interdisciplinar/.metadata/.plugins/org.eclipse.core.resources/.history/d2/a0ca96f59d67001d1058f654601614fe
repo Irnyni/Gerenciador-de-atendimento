@@ -1,0 +1,123 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import java.awt.Color;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+public class Gerente extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtComentario;
+	private JTextField txtNota;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gerente frame = new Gerente();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Gerente() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(1, 1, 550, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		txtComentario = new JTextField();
+		txtComentario.setBounds(19, 220, 479, 151);
+		contentPane.add(txtComentario);
+		txtComentario.setColumns(10);
+		
+		txtNota = new JTextField();
+		txtNota.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNota.setBackground(new Color(255, 255, 255));
+		txtNota.setForeground(new Color(0, 0, 0));
+		txtNota.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		txtNota.setBounds(324, 116, 33, 28);
+		contentPane.add(txtNota);
+		txtNota.setColumns(10);
+		
+		JLabel lblNota = new JLabel("INSIRA UMA NOTA DE 0 A 10 :");
+		lblNota.setForeground(new Color(255, 255, 255));
+		lblNota.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblNota.setBounds(19, 119, 417, 23);
+		contentPane.add(lblNota);
+		
+		JLabel lblComentario = new JLabel("Críticas ou Sugestões (Opcional) :");
+		lblComentario.setForeground(new Color(255, 255, 255));
+		lblComentario.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblComentario.setBounds(19, 181, 352, 28);
+		contentPane.add(lblComentario);
+		
+		JButton btnSalvar = new JButton("SALVAR");
+		btnSalvar.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AvaliacaoController controller = new AvaliacaoController();
+		        controller.executa(Gerente.this);
+			}
+		});
+		btnSalvar.setBounds(185, 384, 139, 47);
+		contentPane.add(btnSalvar);
+		
+		JLabel lblNewLabel = new JLabel("AVALIAÇÃO DO ATENDIMENTO");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 30));
+		lblNewLabel.setBounds(19, 11, 517, 48);
+		contentPane.add(lblNewLabel);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(240, 276, 1, 2);
+		contentPane.add(separator);
+		
+	}
+	
+		
+		public JTextField getTxtNota() {
+			return txtNota;
+		}
+
+		public void setTxtNota(JTextField txtNota) {
+			this.txtNota = txtNota;
+		}
+		
+		public JTextField getTxtComentario() {
+			return txtComentario;
+		}
+
+		public void setTxtComentario(JTextField txtComentario) {
+			this.txtComentario = txtComentario;
+		}
+}

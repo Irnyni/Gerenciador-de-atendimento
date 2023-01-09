@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+F:\Projeto interdisciplinar\.metadata\.plugins\org.eclipse.jdt.core
+1975133094.index
+3137394867.index
+1765006267.index
+692916267.index
+1575797219.index
+1865797976.index

@@ -1,0 +1,129 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import controller.CargoController;
+import modelo.dao.FuncionarioDao;
+import modelo.dao.SenhaDao;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import javax.swing.JPasswordField;
+import java.awt.Cursor;
+import javax.swing.JLayeredPane;
+
+public class SenhaGerada extends JFrame {
+
+	private JPanel contentPane;
+	private int key; 
+	
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SenhaGerada frame = new SenhaGerada();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	
+	public void passaDados(int senha){
+          this.key=senha;
+	      System.out.println("key em senha gerada"+senha);
+	      Senhas s = new Senhas();
+	      s.passaDados(senha);
+	  }
+	
+	
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+	public SenhaGerada() {
+		setAlwaysOnTop(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(1, 1, 550, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setForeground(new Color(64, 0, 64));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(81, 11, -35, 26);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblInserirGuich = new JLabel("SOLICITAR SENHA");
+		lblInserirGuich.setAutoscrolls(true);
+		lblInserirGuich.setForeground(new Color(255, 255, 255));
+		lblInserirGuich.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		lblInserirGuich.setBounds(117, 32, 277, 60);
+		contentPane.add(lblInserirGuich);
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(252, 192, 1, 1);
+		contentPane.add(layeredPane);
+		SenhaDao senha = new SenhaDao(); 
+		JLabel lblPaga = new JLabel(senha.toString());
+		lblPaga.setForeground(Color.WHITE);
+		lblPaga.setFont(new Font("Comic Sans MS", Font.BOLD, 99));
+		lblPaga.setAutoscrolls(true);
+		lblPaga.setBounds(27, 117, 464, 189);
+		contentPane.add(lblPaga);
+		
+		JLabel lblSuaSenhaSer = new JLabel("SUA SENHA SERÁ IMPRESSA!");
+		lblSuaSenhaSer.setForeground(Color.WHITE);
+		lblSuaSenhaSer.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+		lblSuaSenhaSer.setAutoscrolls(true);
+		lblSuaSenhaSer.setBounds(46, 345, 463, 60);
+		contentPane.add(lblSuaSenhaSer);
+		
+		JButton btnNewButton = new JButton("SAIR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Senhas frame = new Senhas();
+				SenhaOpcoes so = new SenhaOpcoes();
+				so.getIncremento();
+				dispose();
+				frame.passaDados(key);
+				frame.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(203, 416, 89, 23);
+		contentPane.add(btnNewButton);
+
+	
+
+	}
+
+}

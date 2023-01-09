@@ -1,0 +1,49 @@
+package view;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controller.SenhaController;
+import modelo.entidade.Artigo;
+import modelo.entidade.Senha;
+
+import javax.swing.JScrollPane;
+
+public class ListaArtigosPanel extends JPanel {
+	private JTable table;
+	
+	
+	public ListaArtigosPanel() {
+		setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(76, 37, 303, 171);
+		add(scrollPane_1);	
+
+		// As colunas da tabela
+		String colunas[] = { "T�tulo", "Autor", "Peri�dico", "Ano", "Chave"};
+
+		// Cria um DefaultTableModel para manipular os dados do JTable. Os par�metros s�o um array que identifica as colunas e um int que seta o n�mero inicial que linhas
+		DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
+
+		SenhaController senhaController = new SenhaController();
+		
+		ArrayList<Senha> senhas = senhaController.consultar();
+		table = new JTable(5,senhas.size());
+		
+		
+		for(int i=0; i < artigos.size() ; i++) {
+		// Insere os dados no DefaultTableModel
+			Integer ano = artigos.get(i).getAno();
+			System.out.println(artigos.get(i).getTitulo() + artigos.get(i).getAutor() + artigos.get(i).getPeriodico() + ano.toString() + artigos.get(i).getChave());
+			modelo.addRow(new String[]{artigos.get(i).getTitulo(), artigos.get(i).getAutor(), artigos.get(i).getPeriodico(), ano.toString(), artigos.get(i).getChave()});   
+		}
+		// Associa o DefaultTableModel ao JTable
+		table.setModel(modelo);		
+		
+		//table = new JTable(listaPessoas, getNameColumns());
+		scrollPane_1.setViewportView(table);
+
+	}
+}

@@ -1,0 +1,113 @@
+package view;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controller.SenhaController;
+import modelo.entidade.Senha;
+
+import javax.swing.JScrollPane;
+public GerenciaAtendimentos() {
+	setAlwaysOnTop(true);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setBounds(1, 1, 550, 500);
+	contentPane = new JPanel();
+	contentPane.setBackground(new Color(0, 0, 0));
+	contentPane.setForeground(new Color(64, 0, 64));
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	setContentPane(contentPane);
+	contentPane.setLayout(null);
+	
+	JLabel lblNewLabel = new JLabel("New label");
+	lblNewLabel.setBounds(81, 11, -35, 26);
+	contentPane.add(lblNewLabel);
+	
+	JButton btnInserir = new JButton("INSERIR");
+	btnInserir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	btnInserir.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+
+	
+		}
+	});
+	btnInserir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	btnInserir.setBounds(60, 106, 398, 46);
+	contentPane.add(btnInserir);
+	
+	JLabel lblInserirGuich = new JLabel("SERVI\u00C7OS");
+	lblInserirGuich.setAutoscrolls(true);
+	lblInserirGuich.setForeground(new Color(255, 255, 255));
+	lblInserirGuich.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+	lblInserirGuich.setBounds(181, 11, 277, 60);
+	contentPane.add(lblInserirGuich);
+	
+	JButton btnPesquisar = new JButton("PESQUISAR");
+	btnPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	btnPesquisar.setBounds(60, 190, 398, 46);
+	contentPane.add(btnPesquisar);
+	
+	JButton btnEditar = new JButton("EDITAR");
+	btnEditar.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		}
+	});
+	btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	btnEditar.setBounds(60, 266, 398, 46);
+	contentPane.add(btnEditar);
+	
+	JButton btnexcluir = new JButton("EXCLUIR");
+	btnexcluir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+	btnexcluir.setBounds(60, 345, 398, 46);
+	contentPane.add(btnexcluir);
+}
+
+
+public class MostraSenhas extends JPanel {
+	private JTable table;
+	
+	
+	public MostraSenhas() {
+		setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 0, 450, 380);
+		add(scrollPane_1);	
+
+		// As colunas da tabela
+		String colunas[] = { "idSenha", "Senha", "Categoria", "Servico", "Data"};
+
+		// Cria um DefaultTableModel para manipular os dados do JTable. Os par�metros s�o um array que identifica as colunas e um int que seta o n�mero inicial que linhas
+		DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
+
+		SenhaController senhaController = new SenhaController();
+		
+		ArrayList<Senha> senhas = senhaController.consultar();
+		table = new JTable(5,senhas.size());
+		
+		
+		for(int i=0; i < senhas.size() ; i++) {
+		// Insere os dados no DefaultTableModel
+//			Integer ano = senhas.get(i).getAno();
+			System.out.println(senhas.get(i).getKey() + senhas.get(i).getSenha() + senhas.get(i).getCategoria() +  + senhas.get(i).getServico()+ senhas.get(i).getData());
+			modelo.addRow(new String[]{senhas.get(i).getKey() + senhas.get(i).getSenha() + senhas.get(i).getCategoria() +  + senhas.get(i).getServico()+ senhas.get(i).getData()});   
+		}
+		// Associa o DefaultTableModel ao JTable
+		table.setModel(modelo);		
+		
+		//table = new JTable(listaPessoas, getNameColumns());
+		scrollPane_1.setViewportView(table);
+
+	}
+}
+}
